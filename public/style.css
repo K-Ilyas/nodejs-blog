@@ -1,0 +1,21 @@
+@import url("https://fonts.googleapis.com/css2?family=Kodchasan:wght@200&display=swap");
+*,
+:after,
+:before {
+    font-family: "Kodchasan", sans-serif;
+}
+
+a {
+    text-decoration: none;
+}
+
+a:active,
+a:hover,
+a:focus,
+a:valid {
+    color: inherit;
+}
+
+.text-justify {
+    text-align: justify;
+}
