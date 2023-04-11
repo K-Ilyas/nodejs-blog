@@ -13,12 +13,12 @@ require("dotenv").config();
 const port = process.env.PORT || 3000;
 
 app.set('view engine', 'ejs');
-
+app.use(express.urlencoded({ extended: true }))
 
 // databse
 
 main((myDatabse) => {
-    routes(app, port, myDatabse)
+    routes(app, port)
 })
 
 app.use(express.static(path.join(__dirname, "public")));

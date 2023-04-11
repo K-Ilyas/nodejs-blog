@@ -6,20 +6,20 @@
         <%- include("../partials/nav") %>
             <div class="row  justify-content-center">
                 <div class="col-lg-6 col-md-8">
-                    <form class="mt-5">
+                    <form class="mt-5" action="/blogs" method="post">
                         <div class="mb-3">
                             <label for="title" class="form-label">Blog title</label>
-                            <input type="text" class="form-control" id="title" aria-describedby="titleHelp" required>
+                            <input type="text" class="form-control" name="title" id="title" aria-describedby="titleHelp" required>
                             <div id="titleHelp" class="form-text">Blog title is a required field.</div>
                         </div>
                         <div class="mb-3">
                             <label for="snippet" class="form-label">Blog snippet</label>
-                            <input type="text" class="form-control" id="snippetHelp" required>
+                            <input type="text" name="snippet" class="form-control" id="snippetHelp" required>
                             <div id="snippetHelp" class="form-text">Blog snippet is a required field.</div>
                         </div>
                         <div class="mb-3">
                             <label for="body" class="form-label">Blog body</label>
-                            <textarea class="form-control" id="body" rows="3" aria-describedby="bodyHelp" required></textarea>
+                            <textarea class="form-control" id="body" rows="3" aria-describedby="bodyHelp" name="body" required></textarea>
                             <div id="bodyHelp" class="form-text">Blog body is a required field.</div>
                         </div>
                         <button type="submit" class="btn btn-primary">Submit</button>

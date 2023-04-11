@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include("../partials/head") %>
+
+    <body>
+        <%- include("../partials/nav") %>
+            <div class="row  justify-content-center">
+                <div class="col-lg-8 col-md-10">
+                    <h1 class="mt-5">
+                        <%= blog.title %>
+                    </h1>
+                    <p class="text-justify mt-3">
+                        <%= blog.snippet %>
+                    </p>
+                    <p class="text-justify mt-3">
+                        <%= blog.body %>
+                    </p>
+
+                    <p class="time">
+                        <strong> Created At : </strong>
+                        <span><%= blog.createdAt %></span>
+                    </p>
+                </div>
+                <%- include("../partials/footer") %>
+            </div>
+            </div>
+    </body>
+
+</html>
