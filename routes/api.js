@@ -1,6 +1,6 @@
-const { get_blogs, create_blog, get_blog } = require("../middlewares/crud");
+const { get_blogs, create_blog, get_blog, delete_blog } = require("../middlewares/crud");
 const { properties, param } = require("../controllers/blog")
-
+const moment = require("moment")
 
 function routes(app, port) {
     app.use((req, res, next) => {
@@ -45,8 +45,18 @@ function routes(app, port) {
             get_blog(req.params.id, (err, blog) => {
                 if (err)
                     console.log(err)
-                if (blog)
-                    res.render("details", { blog, title: "blog details" })
+                if (blog) {
+                    res.render("details", { blog, 'createdAt': moment(blog.createdAt).format("YYYY-MM-DD HH:mm:ss"), title: "blog details" })
+                }
+            })
+        })
+        .delete(param, (req, res) => {
+            delete_blog(req.params.id, (err, blog) => {
+                if (err)
+                    console.log(err)
+                if (blog) {
+                    res.json({ redirect: "/" })
+                }
             })
         })
 

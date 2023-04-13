@@ -18,12 +18,25 @@
 
                     <p class="time">
                         <strong> Created At : </strong>
-                        <span><%= blog.createdAt %></span>
+                        <span><%=  createdAt %></span>
                     </p>
+                    <button type="button" class="btn btn-danger" data-blog="<%= blog._id %>">Delete</button>
                 </div>
                 <%- include("../partials/footer") %>
             </div>
             </div>
     </body>
+    <script>
+        const button = document.querySelector(".btn-danger");
+
+        button.addEventListener("click", (e) => {
+            fetch(`/blog/${e.target.dataset.blog}`, {
+                    method: "DELETE"
+                })
+                .then((response) => response.json())
+                .then((data) => window.location.href = data.redirect)
+                .catch((error) => console.log(error))
+        })
+    </script>
 
 </html>

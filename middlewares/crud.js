@@ -27,7 +27,15 @@ function get_blog(id, done) {
 }
 
 
+function delete_blog(id, done) {
+    Blog.findByIdAndDelete(id)
+        .then(blog => done(null, blog))
+        .catch(error => done(error))
+
+}
+
 
 exports.get_blogs = get_blogs;
 exports.create_blog = create_blog;
 exports.get_blog = get_blog;
+exports.delete_blog = delete_blog;
