@@ -13,6 +13,14 @@ const Blog = Schema({
     body: {
         type: String,
         required: true
+    },
+    image: {
+        type: String,
+        default: ""
+    },
+    video: {
+        type: String,
+        default: ""
     }
 
 }, { timestamps: true })

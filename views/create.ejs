@@ -6,7 +6,18 @@
         <%- include("../partials/nav") %>
             <div class="row  justify-content-center">
                 <div class="col-lg-6 col-md-8">
-                    <form class="mt-5" action="/blogs" method="post">
+                    <form class="mt-5" action="/blogs" enctype="multipart/form-data" method="post">
+                        <div class="mb-3">
+                            <label for="formFile" class="form-label">Blog image</label>
+                            <input class="form-control" type="file" id="formFile" name="image" accept="image/*" required>
+                            <div id="formFile" class="form-text">Blog image is a required field.</div>
+
+                        </div>
+                        <div class="mb-3">
+                            <label for="formVideo" class="form-label">Blog video</label>
+                            <input class="form-control" type="file" id="formVideo" name="video" accept="video/*">
+                            <div id="formVideo" class="form-text">Blog video is not a required field.</div>
+                        </div>
                         <div class="mb-3">
                             <label for="title" class="form-label">Blog title</label>
                             <input type="text" class="form-control" name="title" id="title" aria-describedby="titleHelp" required>

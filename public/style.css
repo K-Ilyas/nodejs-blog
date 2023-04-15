@@ -2,7 +2,8 @@
 *,
 :after,
 :before {
-    font-family: "Kodchasan", sans-serif;
+    font-family: 'Kodchasan', Times, serif;
+    box-sizing: border-box;
 }
 
 a {
@@ -18,4 +19,13 @@ a:valid {
 
 .text-justify {
     text-align: justify;
+}
+
+.card-title-custom {
+    font-size: 1.2rem !important;
+    font-weight: bold;
+}
+
+video {
+    width: 100%;
 }

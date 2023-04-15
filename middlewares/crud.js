@@ -1,4 +1,5 @@
 const Blog = require("../models/blog");
+const fs = require("fs")
 
 
 function get_blogs(done) {
@@ -10,7 +11,17 @@ function get_blogs(done) {
 
 }
 
-function create_blog(properties, done) {
+function create_blog(req, properties, done) {
+    if (req.file && req.file.originalname)
+        properties.image = "/images/" + req.file.filename
+    else if (req.files) {
+        if (req.files.image)
+            properties.image = "/images/" + req.files.image[0].filename
+        if (req.files.video)
+            properties.video = "/videos/" + req.files.video[0].filename
+
+    }
+
     const blog = new Blog(properties);
     console.log(blog)
     blog.save()
@@ -29,7 +40,23 @@ function get_blog(id, done) {
 
 function delete_blog(id, done) {
     Blog.findByIdAndDelete(id)
-        .then(blog => done(null, blog))
+        .then(blog => {
+            if (blog.image !== '') {
+                const filepath = process.cwd() + "/public" + blog.image
+                fs.unlink(filepath, (err) => {
+                    if (err) throw err;
+                    console.log(blog.image + ' was deleted');
+                })
+            }
+            if (blog.video !== '') {
+                const filepath = process.cwd() + "/public" + blog.video
+                fs.unlink(filepath, (err) => {
+                    if (err) throw err;
+                    console.log(blog.video + ' was deleted');
+                })
+            }
+            return done(null, blog)
+        })
         .catch(error => done(error))
 
 }

@@ -1,6 +1,8 @@
 const { get_blogs, create_blog, get_blog, delete_blog } = require("../middlewares/crud");
 const { properties, param } = require("../controllers/blog")
 const moment = require("moment")
+const multer = require("multer")
+const upload = require("../middlewares/fileUpload")
 
 function routes(app, port) {
     app.use((req, res, next) => {
@@ -23,12 +25,27 @@ function routes(app, port) {
                     res.render("index", { title: "home", blogs })
             })
         })
-        .post(properties, (req, res) => {
-            create_blog(req.body, (err, blog) => {
+        .post((req, res, next) => {
+            upload(req, res, function (err) {
+                if (err instanceof multer.MulterError) {
+                    // A Multer error occurred when uploading.
+                    req.error = err
+                } else if (err) {
+                    // An unknown error occurred when uploading.
+                    req.error = err
+                }
+                console.log(req.body)
+                next()
+                // Everything went fine.
+            })
+        }, properties, (req, res) => {
+            create_blog(req, req.body, (err, blog) => {
                 if (err)
                     console.log(err)
-                if (blog)
+                if (blog) {
+                    console.log(blog)
                     res.redirect("/blogs");
+                }
             })
         })
 

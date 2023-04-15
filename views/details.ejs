@@ -6,21 +6,29 @@
         <%- include("../partials/nav") %>
             <div class="row  justify-content-center">
                 <div class="col-lg-8 col-md-10">
+
                     <h1 class="mt-5">
                         <%= blog.title %>
                     </h1>
+                    <img src="<%= blog.image %>" class="img-fluid mt-4" alt="Responsive image">
+
                     <p class="text-justify mt-3">
                         <%= blog.snippet %>
                     </p>
                     <p class="text-justify mt-3">
                         <%= blog.body %>
                     </p>
-
-                    <p class="time">
-                        <strong> Created At : </strong>
-                        <span><%=  createdAt %></span>
-                    </p>
-                    <button type="button" class="btn btn-danger" data-blog="<%= blog._id %>">Delete</button>
+                    <% if(blog.video) { %>
+                        <h3>Video</h3>
+                        <video controls>
+                            <source src="<%= blog.video %>" >
+                          </video>
+                        <% }%>
+                            <p class="time mt-3">
+                                <strong> Created At : </strong>
+                                <span><%=  createdAt %></span>
+                            </p>
+                            <button type="button" class="btn btn-danger" data-blog="<%= blog._id %>">Delete</button>
                 </div>
                 <%- include("../partials/footer") %>
             </div>
