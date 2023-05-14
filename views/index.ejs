@@ -1,12 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
-<%- include("../partials/head") %>
+<%- include("../partials/nav_auth") %>
+    <div class="row  justify-content-center">
+        <div class="col-lg-10 col-md-10">
 
-    <body>
-        <%- include("../partials/nav") %>
-            <div class="row  justify-content-center">
-                <div class="col-lg-10 col-md-10">
-                    <h1 class="mt-5 text-decoration-underline">All Blogs</h1>
+            <% if(!user)  { %>
+                <div class="mt-4">
+                    <p>Create an account or login :
+                        <a href="/register">Register</a> /
+                        <a href="/login"> Login</a></p>
+                </div>
+                <% }%>
+                    <h1 class="mt-5">All Blogs</h1>
 
                     <% if(blogs.length == 0 ) { %>
                         <h3 class="mt-4">There are no blogs to display ...</h3>
@@ -43,16 +46,13 @@
                                     </div>
                                     <% }) %>
                             </div>
-                </div>
+        </div>
 
-                <% } %>
+        <% } %>
 
-            </div>
-            <%- include("../partials/footer") %>
+    </div>
+    <%- include("../partials/footer") %>
 
-                </div>
+        </div>
 
-                </div>
-    </body>
-
-</html>
+        </div>

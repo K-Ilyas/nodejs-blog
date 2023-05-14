@@ -19,7 +19,6 @@ function create_blog(req, properties, done) {
             properties.image = "/images/" + req.files.image[0].filename
         if (req.files.video)
             properties.video = "/videos/" + req.files.video[0].filename
-
     }
 
     const blog = new Blog(properties);
@@ -48,7 +47,7 @@ function delete_blog(id, done) {
                     console.log(blog.image + ' was deleted');
                 })
             }
-            if (blog.video !== '') {
+            if (blog.video !== undefined) {
                 const filepath = process.cwd() + "/public" + blog.video
                 fs.unlink(filepath, (err) => {
                     if (err) throw err;

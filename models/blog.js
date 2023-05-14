@@ -6,10 +6,6 @@ const Blog = Schema({
         type: String,
         required: true
     },
-    snippet: {
-        type: String,
-        required: true
-    },
     body: {
         type: String,
         required: true
@@ -18,10 +14,6 @@ const Blog = Schema({
         type: String,
         default: ""
     },
-    video: {
-        type: String,
-        default: ""
-    }
 
 }, { timestamps: true })
 

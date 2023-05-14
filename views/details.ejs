@@ -3,9 +3,9 @@
 <%- include("../partials/head") %>
 
     <body>
-        <%- include("../partials/nav") %>
+        <%- include("../partials/nav_auth") %>
             <div class="row  justify-content-center">
-                <div class="col-lg-8 col-md-10">
+                <div class="col-lg-10 col-md-10">
 
                     <h1 class="mt-5">
                         <%= blog.title %>
@@ -15,13 +15,13 @@
                     <p class="text-justify mt-3">
                         <%= blog.snippet %>
                     </p>
-                    <p class="text-justify mt-3">
-                        <%= blog.body %>
+                    <p class="text-justify mt-3" id="body-blog" dangerouslySetInnerHTML={{ __html: <%=blog.body %> }}>
+                        <%- blog.body %>
                     </p>
                     <% if(blog.video) { %>
                         <h3>Video</h3>
                         <video controls>
-                            <source src="<%= blog.video %>" >
+                            <source src="<%= blog.video%>" >
                           </video>
                         <% }%>
                             <p class="time mt-3">
@@ -34,8 +34,13 @@
             </div>
             </div>
     </body>
+    <script src="https://cdn.ckeditor.com/4.9.1/standard/ckeditor.js"></script>
+
     <script>
         const button = document.querySelector(".btn-danger");
+
+        CKEDITOR.inline(document.getElementById("body-blog"));
+
 
         button.addEventListener("click", (e) => {
             fetch(`/blog/${e.target.dataset.blog}`, {
