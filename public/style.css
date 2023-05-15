@@ -29,3 +29,11 @@ a:valid {
 video {
     width: 100%;
 }
+
+#show-error {
+    display: none;
+}
+
+#show-spinner {
+    display: none;
+}

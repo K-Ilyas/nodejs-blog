@@ -28,7 +28,11 @@
                                 <strong> Created At : </strong>
                                 <span><%=  createdAt %></span>
                             </p>
+
                             <button type="button" class="btn btn-danger" data-blog="<%= blog._id %>">Delete</button>
+                            <div class="alert alert-danger mt-4" role="alert" id="show-error">
+                                Somthing went wrong! (please retry)
+                            </div>
                 </div>
                 <%- include("../partials/footer") %>
             </div>
@@ -37,18 +41,23 @@
     <script src="https://cdn.ckeditor.com/4.9.1/standard/ckeditor.js"></script>
 
     <script>
-        const button = document.querySelector(".btn-danger");
+        document.addEventListener("DOMContentLoaded", () => {
 
-        CKEDITOR.inline(document.getElementById("body-blog"));
+            const button = document.querySelector(".btn-danger");
 
+            CKEDITOR.inline(document.getElementById("body-blog"));
 
-        button.addEventListener("click", (e) => {
-            fetch(`/blog/${e.target.dataset.blog}`, {
-                    method: "DELETE"
-                })
-                .then((response) => response.json())
-                .then((data) => window.location.href = data.redirect)
-                .catch((error) => console.log(error))
+            button.addEventListener("click", (e) => {
+                fetch(`/blg/${e.target.dataset.blog}`, {
+                        method: "DELETE"
+                    })
+                    .then((response) => response.json())
+                    .then((data) => window.location.href = data.redirect)
+                    .catch((error) => {
+                        document.querySelector("#show-error").style.display = "block";
+                    })
+            })
+
         })
     </script>
 

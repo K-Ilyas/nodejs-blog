@@ -29,7 +29,7 @@ exports.register = function (req, res, next) {
 
 
 exports.login = (req, res, next) => {
-    const { email, password } = req.body;
+    const { email, password, remember } = req.body;
     let errors = [];
     console.log(email, password)
     if ((!email || empty(email)) || (!password || empty(password)))
@@ -44,6 +44,18 @@ exports.login = (req, res, next) => {
             password,
             title: "register page"
         })
-    } else
+    } else {
+        if (remember) {
+            res.cookie(`name`, email, {
+                // maxAge: 24 * 60 * 60 * 1000 * 30,
+                // expires works the same as the maxAge
+                secure: true,
+                httpOnly: false,
+                sameSite: 'lax'
+            });
+        } else {
+            res.clearCookie("name")
+        }
         next();
+    }
 }
